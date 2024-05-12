@@ -13,13 +13,13 @@ cd ./up2clipboard-CLI
 ```
 
 # 配置修改
-vim或nano打开`config.txt`，将里面的域名( https://clip.lthero.me )替换成自己的，如 https://clip.yourDomain.com 
+vim或nano打开`config.txt`，将里面的域名( https://clip.yourDomain.com )替换成自己的，如 https://clip.lthero.me
 
 upt和upf可以自定义为你想用的名字
 
 修改后的配置文件如下
 ```sh
-upload_url=https://clip.yourDomain.com
+upload_url=https://clip.lthero.me
 bin_upt_name=upt
 bin_upf_name=upf
 ```
@@ -58,6 +58,8 @@ upt --room 'RoomName' 'Here is some text'
 echo 'Sample text' | upt --room RoomName
 cat notes.txt | upt
 ```
+
+随后，可以访问 https://clip.lthero.me 查看是否上传成功
 
 # 修改配置
 vim或nano打开`config.txt`，将里面的域名替换成任何新域名，bin_upt_name和bin_upf_name替换成新的值
