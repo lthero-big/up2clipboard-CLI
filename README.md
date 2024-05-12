@@ -1,8 +1,11 @@
 # 下载项目
 
+使用命令一键下载
 ```
 git clone https://gitclone.com/github.com/lthero-big/up2clipboard-CLI.git 
 ```
+或者手动下载本项目到本地
+
 
 进入项目目录
 ```sh
