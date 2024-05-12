@@ -10,7 +10,8 @@ cd ./up2clipboard-CLI
 ```
 
 # 配置修改
-打开config.txt，将里面的域名替换成自己的，如https://clip.yourDomain.com
+vim或nano打开config.txt，将里面的域名替换成自己的，如https://clip.yourDomain.com
+
 
 # 运行安装文件
 给install.sh执行权限，并运行
