@@ -22,6 +22,11 @@ vim或nano打开`config.txt`，将里面的域名替换成自己的，如https:/
 sudo chmod +x install.sh
 sudo ./install.sh
 ```
+或直接使用下面命令运行
+```sh
+sudo bash ./install.sh
+```
+
 
 脚本会自己安装需要的环境，运行完成后，即可使用下面的命令进行调用
 
