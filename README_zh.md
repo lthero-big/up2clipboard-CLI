@@ -78,6 +78,9 @@ cat notes.txt | upt
 
 随后，可以访问 https://clip.lthero.me 查看是否上传成功
 
+# 展示
+<p align="center"><img src="./Showcase.png" width="256" height="256"></p>
+
 # 修改配置
 vim或nano打开`config.txt`，将里面的域名替换成任何新域名，bin_upt_name和bin_upf_name替换成新的值
 
