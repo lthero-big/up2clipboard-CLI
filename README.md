@@ -75,7 +75,7 @@ cat notes.txt | upt
 You can then visit `https://clip.lthero.me` to verify the upload success.
 
 # Showcase
-<p align="center"><img src="./Showcase.png" width="70%"  ></p>
+<p align="center"><img src="./Showcase.png" width="800"></p>
 
 
 # Modify Configuration
