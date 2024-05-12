@@ -22,7 +22,7 @@ The `install.sh` script facilitates the one-click deployment of this project.
 
 Use this command to download the project:
 ```bash
-git clone https://gitclone.com/github.com/lthero-big/up2clipboard-CLI.git 
+git clone https://github.com/lthero-big/up2clipboard-CLI.git 
 ```
 Alternatively, you can download the project manually.
 
