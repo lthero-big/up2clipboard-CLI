@@ -27,7 +27,6 @@ sudo ./install.sh
 sudo bash ./install.sh
 ```
 
-
 脚本会自己安装需要的环境，运行完成后，即可使用下面的命令进行调用
 
 # 上传文件
@@ -51,4 +50,8 @@ upt --room 'RoomName' 'Here is some text'
 echo 'Sample text' | upt --room RoomName
 cat notes.txt | upt
 ```
+
+# 修改配置
+vim或nano打开`config.txt`，将里面的域名替换成任何新域名，随后重新执行install.sh即可
+
 
