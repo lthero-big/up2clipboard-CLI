@@ -38,8 +38,9 @@ echo -e "${GREEN}URL read from config.txt: $upload_url${RESET}"
 
 echo "=========Replacing URL in Scripts========="
 # Replace the URL in both upload_text.py and upload_file.py
-sed -i "s#https://clip.domain.com#${upload_url}#g" upload_text.py
-sed -i "s#https://clip.domain.com#${upload_url}#g" upload_file.py
+url_pattern='https?://[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|]'
+sed -i "s#$url_pattern#${upload_url}#g" upload_text.py
+sed -i "s#$url_pattern#${upload_url}#g" upload_file.py
 echo -e "${GREEN}URL replaced in upload_text.py and upload_file.py.${RESET}"
 
 echo "=========Setting Execution Permissions========="
