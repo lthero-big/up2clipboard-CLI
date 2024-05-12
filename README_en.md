@@ -1,3 +1,5 @@
+<p align="center">English | <a href="./README_zh.md">中文</a></p>
+
 # Project Overview
 
 Original project link: https://github.com/TransparentLC/cloud-clipboard
