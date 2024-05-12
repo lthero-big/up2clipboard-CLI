@@ -37,10 +37,9 @@ upload_url=$(cat config.txt)
 echo -e "${GREEN}URL read from config.txt: $upload_url${RESET}"
 
 echo "=========Replacing URL in Scripts========="
-# Replace the URL in both upload_text.py and upload_file.py
-url_pattern='https?://[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|]'
-sed -i "s#$url_pattern#${upload_url}#g" upload_text.py
-sed -i "s#$url_pattern#${upload_url}#g" upload_file.py
+# Replace the URL line in both upload_text.py and upload_file.py
+sed -i "s|^upload_url =.*|upload_url = '${upload_url}'|" upload_text.py
+sed -i "s|^upload_url =.*|upload_url = '${upload_url}'|" upload_file.py
 echo -e "${GREEN}URL replaced in upload_text.py and upload_file.py.${RESET}"
 
 echo "=========Setting Execution Permissions========="
