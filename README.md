@@ -14,7 +14,7 @@ This project extends the Cloud Clipboard project, providing CLI-based tools for 
 
 The `install.sh` script facilitates the one-click deployment of this project.
 
-## Download the Project
+# Download the Project
 
 Use this command to download the project:
 ```bash
@@ -27,7 +27,7 @@ Navigate to the project directory:
 cd ./up2clipboard-CLI
 ```
 
-## Configuration Changes
+# Configuration Changes
 Open `config.txt` with `vim` or `nano`, and replace the domain URL (`https://clip.yourDomain.com`) with your own, such as `https://clip.lthero.me`.
 
 You can customize `upt` and `upf` to your preferred names.
@@ -39,7 +39,7 @@ bin_upt_name=upt
 bin_upf_name=upf
 ```
 
-## Run the Installation Script
+# Run the Installation Script
 Grant execution permissions to `install.sh`, then execute it:
 ```bash
 sudo chmod +x install.sh
@@ -52,7 +52,7 @@ sudo bash ./install.sh
 
 The script will automatically install the required environment. After completion, you can use the commands below to operate the project.
 
-## Upload Files
+# Upload Files
 ```bash
 upf somefile.txt --room RoomName
 upf --room 'RoomName' somefile.txt
@@ -62,7 +62,7 @@ upf --room RoomName file*
 - `file*`: Supports wildcard characters
 - **Does not support** entire folder uploads
 
-## Upload Text
+# Upload Text
 
 Supports various usage patterns:
 ```bash
@@ -74,11 +74,11 @@ cat notes.txt | upt
 
 You can then visit `https://clip.lthero.me` to verify the upload success.
 
-## Showcase
-<p align="center"><img src="./Showcase.png" width="256" height="256"></p>
+# Showcase
+<p align="center"><img src="./Showcase.png" width="1365" height="220"></p>
 
 
-## Modify Configuration
+# Modify Configuration
 Open `config.txt` with `vim` or `nano` to replace the domain with any new one, and adjust `bin_upt_name` and `bin_upf_name` to new values as well.
 
 After that, simply rerun `install.sh` to apply the new settings.
