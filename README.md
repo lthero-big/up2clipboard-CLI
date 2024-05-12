@@ -14,6 +14,10 @@ This project extends the Cloud Clipboard project, providing CLI-based tools for 
 
 The `install.sh` script facilitates the one-click deployment of this project.
 
+## Showcase
+<p align="center"><img src="./Showcase.png" style="width: 90%; height: auto;"></p>
+
+
 # Download the Project
 
 Use this command to download the project:
@@ -74,8 +78,7 @@ cat notes.txt | upt
 
 You can then visit `https://clip.lthero.me` to verify the upload success.
 
-# Showcase
-<p align="center"><img src="./Showcase.png" style="width: 70%; height: auto;"></p>
+
 
 
 # Modify Configuration
