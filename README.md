@@ -1,4 +1,19 @@
-# 下载项目
+# 本项目说明
+
+原项目地址： https://github.com/TransparentLC/cloud-clipboard
+
+cloud-clipboard使用docker安装
+```
+docker pull lthero1/lthero-onlineclip:latest
+docker container run -d -p 9501:9501 lthero1/lthero-onlineclip
+```
+
+本项目基于clipboard项目，提供了基于CLI方式的上传文字、文件功能
+
+其中，install.sh为一键部署本项目脚本
+
+
+# 下载本项目
 
 使用命令一键下载
 ```
@@ -7,7 +22,7 @@ git clone https://gitclone.com/github.com/lthero-big/up2clipboard-CLI.git
 或者手动下载本项目到本地
 
 
-进入项目目录
+进入本项目目录
 ```sh
 cd ./up2clipboard-CLI
 ```
