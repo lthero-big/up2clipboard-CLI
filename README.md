@@ -1,15 +1,18 @@
-# up2clipboard-CLI
-upload files and text contents to online clipboard by using CLI
+# 下载项目
 
-# 配置修改
-打开config.txt，将里面的域名替换成自己的，如https://clip.yourDomain.com
+```
+git clone https://gitclone.com/github.com/lthero-big/up2clipboard-CLI.git 
+```
 
-# 运行安装文件
 进入项目目录
 ```sh
 cd ./up2clipboard-CLI
 ```
 
+# 配置修改
+打开config.txt，将里面的域名替换成自己的，如https://clip.yourDomain.com
+
+# 运行安装文件
 给install.sh执行权限，并运行
 ```sh
 sudo chmod +x install.sh
