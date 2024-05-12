@@ -27,7 +27,7 @@ sudo ./install.sh
 ```sh
 upf somefile.txt --room RoomName
 upf --room 'RoomName' somefile.t
-upf --room RoomName file*
+upf --room RoomName file\*
 ```
 
 * `file*`: 支持通符号
