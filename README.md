@@ -74,6 +74,10 @@ cat notes.txt | upt
 
 You can then visit `https://clip.lthero.me` to verify the upload success.
 
+## Showcase
+<p align="center"><img src="./Showcase.png" width="256" height="256"></p>
+
+
 ## Modify Configuration
 Open `config.txt` with `vim` or `nano` to replace the domain with any new one, and adjust `bin_upt_name` and `bin_upf_name` to new values as well.
 
