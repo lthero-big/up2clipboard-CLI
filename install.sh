@@ -1,8 +1,33 @@
 #!/bin/bash
 
+# File variables
+CONFIG_FILE="config.txt"
+
 # ANSI color codes
 GREEN="\033[0;32m"
 RED="\033[0;31m"
+BLUE="\033[0;34m"
+RESET="\033[0m"
+
+# Read configuration from a simple text file
+BIN_DIR="/usr/local/bin/"
+BIN_UPT_NAME=$(grep '^bin_upt_name=' $CONFIG_FILE | cut -d'=' -f2)
+BIN_UPF_NAME=$(grep '^bin_upf_name=' $CONFIG_FILE | cut -d'=' -f2)
+BIN_UPT="${BIN_DIR}${BIN_UPT_NAME}"
+BIN_UPF="${BIN_DIR}${BIN_UPF_NAME}"
+upload_url=$(grep '^upload_url=' $CONFIG_FILE | cut -d'=' -f2)
+
+echo -e "${GREEN}Configuration loaded:${RESET} BIN_UPT_NAME=${BLUE}$BIN_UPT_NAME${RESET}, BIN_UPF_NAME=${BLUE}$BIN_UPF_NAME${RESET}, UPLOAD_URL=${BLUE}$upload_url${RESET}"
+
+
+# Python script file names
+UPLOAD_TEXT="upload_text.py"
+UPLOAD_FILE="upload_file.py"
+
+# ANSI color codes
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+BLUE="\033[0;34m"
 RESET="\033[0m"
 
 echo "=========Checking for pip3 Installation========="
@@ -31,52 +56,73 @@ else
     echo -e "${GREEN}tqdm is already installed.${RESET}"
 fi
 
-echo "=========Reading Configuration========="
-# Read URL from config.txt
-upload_url=$(cat config.txt)
-echo -e "${GREEN}URL read from config.txt: $upload_url${RESET}"
 
 echo "=========Replacing URL in Scripts========="
 url_pattern='https?://[-A-Za-z0-9+&@#/%?=~_|!:,.;]*[-A-Za-z0-9+&@#/%=~_|]'
 # Replace the URL line in both upload_text.py and upload_file.py
-sed -i "s|^[ \t]*upload_url =.*|    upload_url = '${upload_url}'|" upload_text.py
-sed -i "s|^[ \t]*upload_url =.*|    upload_url = '${upload_url}'|" upload_file.py
-echo -e "${GREEN}URL replaced in upload_text.py and upload_file.py.${RESET}"
+sed -i "s|^[ \t]*upload_url =.*|    upload_url = '${upload_url}'|" "$UPLOAD_TEXT"
+sed -i "s|^[ \t]*upload_url =.*|    upload_url = '${upload_url}'|" "$UPLOAD_FILE"
+
+# Function to verify if the replacement was successful
+verify_url_replacement() {
+    local file=$1
+    local expected_url=$2
+
+    if grep -qE "^[ \t]*upload_url = '${expected_url}'" "$file"; then
+        echo -e "${GREEN}URL successfully replaced in${RESET} ${BLUE}${file}.${RESET}"
+    else
+        echo -e "${RED}Failed to replace URL in${RESET} ${BLUE}${file}. Exiting.${RESET}"
+        exit 1
+    fi
+}
+
+# Verify replacement for both files
+verify_url_replacement "$UPLOAD_TEXT" "${upload_url}"
+verify_url_replacement "$UPLOAD_FILE" "${upload_url}"
 
 echo "=========Setting Execution Permissions========="
 # Grant execution permissions to the scripts
-sudo chmod +x upload_text.py
-sudo chmod +x upload_file.py
-echo -e "${GREEN}Execution permissions set for upload_text.py and upload_file.py.${RESET}"
+if sudo chmod +x "$UPLOAD_TEXT" && sudo chmod +x "$UPLOAD_FILE"; then
+    echo -e "${GREEN}Execution permissions set for${RESET} ${BLUE}${UPLOAD_TEXT} and ${UPLOAD_FILE}.${RESET}"
+else
+    echo -e "${RED}Failed to set execution permissions. Exiting.${RESET}"
+    exit 1
+fi
 
 echo "=========Copying Scripts to /usr/local/bin========="
 # Copy the scripts to /usr/local/bin and rename
-sudo cp upload_text.py /usr/local/bin/upt
-sudo cp upload_file.py /usr/local/bin/upf
-echo -e "${GREEN}Scripts copied and renamed to /usr/local/bin/upt and /usr/local/bin/upf.${RESET}"
+if sudo cp "$UPLOAD_TEXT" "$BIN_UPT" && sudo cp "$UPLOAD_FILE" "$BIN_UPF"; then
+    echo -e "${GREEN}Scripts copied and renamed to${RESET} ${BLUE}${BIN_UPT} and ${BIN_UPF}.${RESET}"
+else
+    echo -e "${RED}Failed to copy or rename scripts. Exiting.${RESET}"
+    exit 1
+fi
 
 echo "=========Setting Shebang for Scripts========="
 # Set the correct Python interpreter path
 PYTHON_PATH=$(which python3)
-sudo sed -i "1i #!${PYTHON_PATH}" /usr/local/bin/upt
-sudo sed -i "1i #!${PYTHON_PATH}" /usr/local/bin/upf
-echo -e "${GREEN}Shebang set correctly in /usr/local/bin/upt and /usr/local/bin/upf.${RESET}"
+if sudo sed -i "1i #!${PYTHON_PATH}" "$BIN_UPT" && sudo sed -i "1i #!${PYTHON_PATH}" "$BIN_UPF"; then
+    echo -e "${GREEN}Shebang set correctly in${RESET} ${BLUE}${BIN_UPT} and ${BIN_UPF}.${RESET}"
+else
+    echo -e "${RED}Failed to set shebang for the scripts. Exiting.${RESET}"
+    exit 1
+fi
 
 echo "=========Installation Complete========="
 # Output “Installation Complete” in green and reset color
-echo -e "${GREEN}Installation Complete. Scripts 'upf' and 'upt' are now available globally.${RESET}"
+echo -e "${GREEN}Installation Complete. Scripts${RESET} ${BLUE}'${BIN_UPF_NAME}' and '${BIN_UPT_NAME}'${RESET}${GREEN} are now available globally.${RESET}"
 
 # Display usage examples
 echo "Usage examples:"
 echo "1. To upload text:"
-echo "   upt 'Here is some text' --room RoomName"
-echo "   upt --room 'RoomName' 'Here is some text'"
-echo "   echo 'Sample text' | upt --room RoomName"
-echo "   cat notes.txt | upt"
+echo -e "   ${BLUE}${BIN_UPT_NAME} 'Here is some text' --room RoomName${RESET}"
+echo "   ${BIN_UPT_NAME} --room 'RoomName' 'Here is some text'"
+echo "   echo 'Sample text' | ${BIN_UPT_NAME} --room RoomName"
+echo "   cat notes.txt | ${BIN_UPT_NAME}"
 echo ""
 echo "2. To upload files:"
-echo "   upf somefile.txt --room RoomName"
-echo "   upf --room 'RoomName' somefile.txt"
-echo "   upf --room RoomName file*"
+echo -e "   ${BLUE}${BIN_UPF_NAME} somefile.txt --room RoomName${RESET}"
+echo "   ${BIN_UPF_NAME} --room 'RoomName' somefile.txt"
+echo "   ${BIN_UPF_NAME} --room RoomName file*"
 echo ""
-echo "Remember to run these commands in a shell where the environment variable PATH includes /usr/local/bin if you installed the scripts there."
+echo "Remember to run these commands in a shell where the environment variable PATH includes ${BIN_DIR} if you installed the scripts there."
