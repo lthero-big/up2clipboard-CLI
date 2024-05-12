@@ -1,1 +1,3 @@
-https://clip.lthero.me
+upload_url=https://clip.lthero.me
+bin_upt_name=upt
+bin_upf_name=upf
