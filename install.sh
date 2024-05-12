@@ -9,7 +9,7 @@ echo "=========Checking for pip3 Installation========="
 # Check and install pip3
 if ! command -v pip3 &> /dev/null; then
     echo "pip3 could not be found, attempting to install."
-    sudo apt-get update && sudo apt-get install python3-pip
+    sudo apt-get update && sudo apt-get -y install python3-pip
     if [ $? -ne 0 ]; then
         echo -e "${RED}Failed to install pip3, exiting.${RESET}"
         exit 1
