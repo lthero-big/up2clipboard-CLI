@@ -16,6 +16,7 @@ sudo chmod +x install.sh
 sudo ./install.sh
 ```
 
+脚本会自己安装需要的环境，运行完成后，即可使用下面的命令进行调用
 
 # 上传文件
 
