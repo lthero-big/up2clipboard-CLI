@@ -61,8 +61,9 @@ sudo bash ./install.sh
 
 ```sh
 upf somefile.txt --room RoomName
-upf --room 'RoomName' somefile.t
-upf --room RoomName file*
+upf --room 'RoomName' somefile.txt   
+upf --room RoomName file*  # 上传当前目录下所有file开头的文件
+upf --room RoomName ./*    # 上传当前目录下所有文件（不包含子目录）
 ```
 
 * `file*`: 支持通符号
